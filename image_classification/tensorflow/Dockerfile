@@ -21,7 +21,7 @@ ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 RUN apt-get install -y python-setuptools
 
 RUN apt-get install -y python-pip python3-pip virtualenv htop
-RUN pip3 install --upgrade numpy scipy sklearn tf-nightly-gpu
+RUN pip3 install --upgrade numpy scipy sklearn tensorflow-gpu
 
 
 # Mount data into the docker
