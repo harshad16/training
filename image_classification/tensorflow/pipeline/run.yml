@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: run
+spec:
+  inputs:
+    params:
+      - name: TEMPLATE
+        description: The remplate for the run job
+        type: string
+        default:
+        - "image_classification_template.yaml"
+  steps:
+    - name: add-template
+      image: openchift-client
+      command: ['apply', '-f', '$(inputs.params.TEMPLATE)']
+      args:
