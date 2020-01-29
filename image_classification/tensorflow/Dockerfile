@@ -1,7 +1,7 @@
 FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
 
-WORKDIR /research
+WORKDIR /workspace
 
 RUN apt-get update
 
@@ -13,10 +13,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python-pip
 
 
-ENV HOME /research
+ENV HOME /workspace
 ENV PYENV_ROOT $HOME/.pyenv
 ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 
+RUN chgrp -R 0 /workspace && \
+    chmod -R g=u /workspace
+RUN chmod g=u /etc/passwd
+ENTRYPOINT [ "uid_entrypoint" ]
+USER 1000310000
 
 RUN apt-get install -y python-setuptools
 
