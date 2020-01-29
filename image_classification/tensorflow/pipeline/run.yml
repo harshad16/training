@@ -4,14 +4,13 @@ metadata:
   name: run
 spec:
   inputs:
-    params:
-      - name: TEMPLATE
-        description: The remplate for the run job
-        type: string
-        default:
-        - "image_classification_template.yaml"
+    resources:
+    - name: build-image
+      type: image
   steps:
-    - name: add-template
-      image: openchift-client
-      command: ['apply', '-f', '$(inputs.params.TEMPLATE)']
-      args:
+    - name: run
+    - image: $(inputs.resources.build-image.url)
+      workingDir: /workspace/
+      securityContext:
+        privileged: false
+      command: ["/bin/sh", "./run_and_time.sh"]

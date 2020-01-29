@@ -9,38 +9,11 @@ spec:
     - name: build-image
       type: image
 
-  params:
-    - name: USER
-      description: Login username
-      default: 'rlevinso'
-      type: string
-    - name: PASS
-      description: Login password
-      type: string
-    - name: SERVER_URL
-      description: The access point for the cluster.
-      default: 'https://gpu-compute-001.infra.prod.upshift.rdu2.redhat.com:8443'
-    - name: TEMPLATE
-      description: The remplate for the run job
-      type: string
-      default:
-      - "image_classification_template.yaml"
-
   tasks:
-    - name: login
-      taskref:
-        name: openshift-client
-        kind: ClusterTask
-      params:
-        - name: ARGS
-          value: ["login", "-u", "$(params.USER)", "-p", "$(params.PASS)", "(params.SERVER_URL)"]
-    - name: prebuild
+    - name: build
       taskRef:
-        name: openshift-client
-        kind: ClusterTask
-      params:
-        - name: ARGS
-          value: ['new-build', '$(resources.repo)', '--context-dir=image_classification/tensorflow']
+        name: buildah
+        kind: Task
       resources:
         inputs:
           - name: source
@@ -48,25 +21,11 @@ spec:
         outputs:
           - name: image
             resource: build-image
-    - name: build
-      taskRef:
-        name: openshift-client
-        kind: ClusterTask
-      params:
-        - name: ARGS
-          value: ['start-build', 'training']
-      resources:
-        inputs:
-          - name: image
-            resource: build-image
-            from: 
-              - prebuild
     - name: run
       taskRef:
         name: run
-        kind: ClusterTask
-      params:
-        - name: TEMPLATE
-          value: '$(params.TEMPLATE)'
-      runAfter:
-        - build
+        kind: Task
+      resources:
+        inputs:
+          - name: build-image
+            resource: build-image
