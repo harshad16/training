@@ -29,4 +29,4 @@ WORKDIR /research/resnet
 RUN pip3 install -r official/requirements.txt
 
 
-ENTRYPOINT ["./docker_entrypoint.sh"]
+ENTRYPOINT ["./pipeline/docker_entrypoint.sh"]
