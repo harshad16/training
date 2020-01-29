@@ -1,6 +1,5 @@
 FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
-
 WORKDIR /workspace
 
 RUN apt-get update
@@ -17,17 +16,10 @@ ENV HOME /workspace
 ENV PYENV_ROOT $HOME/.pyenv
 ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 
-RUN chgrp -R 0 /workspace && \
-    chmod -R g=u /workspace
-RUN chmod g=u /etc/passwd
-ENTRYPOINT [ "uid_entrypoint" ]
-USER 1000310000
-
 RUN apt-get install -y python-setuptools
 
 RUN apt-get install -y python-pip python3-pip virtualenv htop
 RUN pip3 install --upgrade numpy scipy sklearn tensorflow-gpu==1.14.0
-
 
 # Mount data into the docker
 ADD . /research/resnet
@@ -37,5 +29,4 @@ WORKDIR /research/resnet
 RUN pip3 install -r official/requirements.txt
 
 
-ENTRYPOINT ["/bin/bash"]
-
+ENTRYPOINT ["./docker_entrypoint.sh"]
