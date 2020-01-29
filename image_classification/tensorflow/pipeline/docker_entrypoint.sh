@@ -5,6 +5,8 @@ myuid=$(id -u)
 mygid=$(id -g)
 uidentry=$(getent passwd $myuid)
 
+echo $(myuid)
+
 # If there is no passwd entry for the container UID, attempt to create one
 if [[ -z "$uidentry" ]] ; then
     if [[ -w /etc/passwd ]] ; then
