@@ -26,19 +26,10 @@ spec:
       type: image
 
   steps:
-  - name: user
-    image: $(inputs.params.BUILDER_IMAGE)
-    workingDir: /workspace/source
-    command: ["/bin/bash" "./image_classification/tensorflow/pipeline/user.sh"]
-    volumeMounts:
-    - name: varlibcontainers
-      mountPath: /var/lib/containers
-    securityContext:
-      privileged: false
   - name: build
     image: $(inputs.params.BUILDER_IMAGE)
     workingDir: /workspace/source
-    command: ['buildah', 'bud', '--tls-verify=$(inputs.params.TLSVERIFY)', '--layers', '-f', '$(inputs.params.DOCKERFILE)', '-t', '$(outputs.resources.image.url)', '.']
+    command: ["/bin/bash", "./image_classification/tensorflow/pipeline/user.sh", '--tls-verify=$(inputs.params.TLSVERIFY)', '--layers', '-f', '$(inputs.params.DOCKERFILE)', '-t', '$(outputs.resources.image.url)', '.']
     volumeMounts:
     - name: varlibcontainers
       mountPath: /var/lib/containers
