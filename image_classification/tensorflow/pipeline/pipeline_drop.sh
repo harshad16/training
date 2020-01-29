@@ -4,3 +4,4 @@ oc delete pipelineresource/build-image
 oc delete pipelineresource/repo
 oc delete task/buildah
 oc delete task/run
+oc delete serviceaccount/image-classification
