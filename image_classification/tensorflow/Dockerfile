@@ -2,6 +2,8 @@ FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
 WORKDIR /workspace
 
+ENTRYPOINT ["./pipeline/docker_entrypoint.sh"]
+
 RUN apt-get update
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -29,4 +31,3 @@ WORKDIR /research/resnet
 RUN pip3 install -r official/requirements.txt
 
 
-ENTRYPOINT ["./pipeline/docker_entrypoint.sh"]
