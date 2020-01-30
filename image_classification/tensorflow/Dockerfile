@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.2-cudnn7-runtime-ubi8
+FROM nvidia/cuda:10.2-cudnn7-runtime-centos7
 
 WORKDIR /workspace/source
 
