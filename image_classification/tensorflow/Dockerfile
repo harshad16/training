@@ -1,6 +1,6 @@
 FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
-WORKDIR /workspace
+WORKDIR /workspace/source
 
 RUN apt-get update
 
