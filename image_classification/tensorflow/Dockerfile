@@ -6,6 +6,9 @@ WORKDIR /workspace/source
 
 RUN apt-get update
 
+RUN dpkg -i --force-overwrite /var/cache/apt/archives/libgdbm3_1.8.3-13.1_amd64.deb 
+
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     build-essential \
