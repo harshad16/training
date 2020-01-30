@@ -2,6 +2,9 @@ FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
 WORKDIR /workspace
 
+RUN chgrp -R 0 /usr && \
+    chmod -R g=u /usr
+
 RUN apt-get update
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
