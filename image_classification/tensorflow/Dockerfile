@@ -1,15 +1,10 @@
-FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
-
-RUN whoami
+FROM nvidia/cuda:10.2-cudnn7-runtime-ubi8
 
 WORKDIR /workspace/source
 
-RUN apt-get update
+RUN yum update
 
-RUN dpkg -i --force-overwrite /var/cache/apt/archives/libgdbm3_1.8.3-13.1_amd64.deb 
-
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN yum update && yum install -y --no-install-recommends \
     ca-certificates \
     build-essential \
     git \
@@ -21,9 +16,9 @@ ENV HOME /workspace
 ENV PYENV_ROOT $HOME/.pyenv
 ENV PATH $PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH
 
-RUN apt-get install -y python-setuptools
+RUN yum install -y python-setuptools
 
-RUN apt-get install -y python-pip python3-pip virtualenv htop
+RUN yum install -y python-pip python3-pip virtualenv htop
 RUN pip3 install --upgrade numpy scipy sklearn tensorflow-gpu==1.14.0
 
 # Mount data into the docker

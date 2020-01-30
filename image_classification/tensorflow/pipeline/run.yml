@@ -5,11 +5,11 @@ metadata:
 spec:
   inputs:
     resources:
-    - name: build-image
+    - name: image
       type: image
   steps:
     - name: run
-    - image: $(inputs.resources.build-image.url)
+    - image: $(inputs.resources.image.url)
       workingDir: /workspace/
       securityContext:
         privileged: true

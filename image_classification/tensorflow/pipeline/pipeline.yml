@@ -27,7 +27,7 @@ spec:
         kind: Task
       resources:
         inputs:
-          - name: build-image
+          - name: image
             resource: build-image
             from:
               - build
