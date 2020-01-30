@@ -2,9 +2,6 @@ FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
 WORKDIR /workspace
 
-RUN chgrp -R 0 /usr && \
-    chmod -R g=u /usr
-
 RUN apt-get update
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -32,4 +29,4 @@ WORKDIR /research/resnet
 RUN pip3 install -r official/requirements.txt
 
 
-ENTRYPOINT ["./pipeline/docker_entrypoint.sh"]
+ENTRYPOINT ["./image_classification/tensorflow/pipeline/docker_entrypoint.sh"]
