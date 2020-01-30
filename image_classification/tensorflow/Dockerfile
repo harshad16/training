@@ -2,9 +2,9 @@ FROM nvidia/cuda:10.2-cudnn7-runtime-centos7
 
 WORKDIR /workspace/source
 
-RUN yum update
+RUN yum update -y
 
-RUN yum update && yum install -y --no-install-recommends \
+RUN yum update -y && yum install -y --no-install-recommends \
     ca-certificates \
     build-essential \
     git \
