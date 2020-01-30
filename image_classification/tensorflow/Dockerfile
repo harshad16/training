@@ -1,5 +1,7 @@
 FROM nvidia/cuda:9.0-cudnn7-runtime-ubuntu16.04
 
+RUN whoami
+
 WORKDIR /workspace/source
 
 RUN apt-get update
