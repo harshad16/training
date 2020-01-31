@@ -9,7 +9,7 @@ spec:
       type: image
   steps:
     - name: run
-    - image: $(inputs.resources.image.url)
+      image: $(inputs.resources.image.url)
       workingDir: /workspace/
       securityContext:
         privileged: true
