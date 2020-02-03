@@ -17,5 +17,5 @@ spec:
   type: image
   params:
     - name: url
-      value: default-route-openshift-image-registry.apps-crc.testing/mlperf/training
+      value: default-route-openshift-image-registry.apps-crc.testing/mlperf/training:latest
 ---
