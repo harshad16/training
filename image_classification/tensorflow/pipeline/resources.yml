@@ -17,5 +17,5 @@ spec:
   type: image
   params:
     - name: url
-      value: docker-registry.default.svc:5000/mlperf/training:latest
+      value: default-route-openshift-image-registry.apps-crc.testing/mlperf/training
 ---
