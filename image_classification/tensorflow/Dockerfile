@@ -30,5 +30,7 @@ ADD . /research/resnet
 WORKDIR /research/resnet
 RUN pip3 install -r image_classification/tensorflow/requirements.txt
 
+RUN git clone https://github.com/raynalee4/training.git
+
 ENV _BUILDAH_STARTED_IN_USERNS="" BUILDAH_ISOLATION=chroot
 ENTRYPOINT ["./image_classification/tensorflow/pipeline/docker_entrypoint.sh"]
