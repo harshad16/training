@@ -8,9 +8,15 @@ spec:
     - name: image
       type: image
   steps:
+    - name: ls
+      image: quay.io/buildah/stable:v1.11.0
+      workingDir: /workspace/
+      securityContext:
+        privileged: true
+      command: ["ls"]
     - name: run
       image: $(inputs.resources.image.url)
       workingDir: /workspace/
       securityContext:
         privileged: true
-      command: ["/bin/sh", "./run_and_time.sh"]
+      command: ["/bin/sh", "./image_classification/tensorflow/run_and_time.sh"]
