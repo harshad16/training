@@ -28,8 +28,8 @@ ADD . /workspace/source
 
 
 WORKDIR /workspace/source
-RUN pip3 install -r image_classification/tensorflow/requirements.txt
+RUN pip3 install -r requirements.txt
 
 
 ENV _BUILDAH_STARTED_IN_USERNS="" BUILDAH_ISOLATION=chroot
-ENTRYPOINT ["./image_classification/tensorflow/pipeline/docker_entrypoint.sh"]
+ENTRYPOINT ["./pipeline/docker_entrypoint.sh"]
