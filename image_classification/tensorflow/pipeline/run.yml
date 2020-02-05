@@ -5,30 +5,20 @@ metadata:
 spec:
   inputs:
     resources:
+    - name: source
+      type: git
     - name: image
       type: image
   steps:
     - name: ls-top
       image: quay.io/buildah/stable:v1.11.0
-      workingDir: /workspace/resnet
+      workingDir: /workspace/source
       securityContext:
         privileged: true
-      command: ["ls", "/"]
-    - name: ls-home
-      image: quay.io/buildah/stable:v1.11.0
-      workingDir: /workspace/resnet
-      securityContext:
-        privileged: true
-      command: ["ls", "/home"]
-    - name: locate
-      image: quay.io/buildah/stable:v1.11.0
-      workingDir: /workspace/resnet
-      securityContext:
-        privileged: true
-      command: ["locate", "run_and_time.sh"]
+      command: ["ls", "/workspace/source"]
     - name: run
       image: $(inputs.resources.image.url)
-      workingDir: /workspace/resnet
+      workingDir: /workspace/source
       securityContext:
         privileged: true
       command: ["/bin/sh", "./image_classification/tensorflow/run_and_time.sh"]
