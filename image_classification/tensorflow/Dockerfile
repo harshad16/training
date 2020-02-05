@@ -1,6 +1,6 @@
 FROM nvidia/cuda:10.2-cudnn7-runtime-centos7
 
-WORKDIR /workspace
+WORKDIR /workspace/source
 
 RUN yum update -y
 
@@ -25,9 +25,9 @@ RUN pip3 install --upgrade numpy scipy sklearn tensorflow-gpu==1.14.0
 
 # Mount data into the docker
 ADD . /workspace/source
+RUN ls
 
-
-WORKDIR /workspace/source
+RUN cd /workspace/source
 RUN pip3 install -r requirements.txt
 
 

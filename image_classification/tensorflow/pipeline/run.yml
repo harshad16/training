@@ -5,13 +5,11 @@ metadata:
 spec:
   inputs:
     resources:
-    - name: source
-      type: git
     - name: image
       type: image
   steps:
     - name: ls-top
-      image: quay.io/buildah/stable:v1.11.0
+      image: $(inputs.resources.image.url)
       workingDir: /workspace/source
       securityContext:
         privileged: true
