@@ -8,12 +8,24 @@ spec:
     - name: image
       type: image
   steps:
-    - name: ls
+    - name: ls_top
       image: quay.io/buildah/stable:v1.11.0
       workingDir: /workspace/
       securityContext:
         privileged: true
-      command: ["/bin/sh", "find", "/", "-name", "run_and_time.sh"]
+      command: ["ls", "/"]
+    - name: ls_home
+      image: quay.io/buildah/stable:v1.11.0
+      workingDir: /workspace/
+      securityContext:
+        privileged: true
+      command: ["ls", "/home"]
+    - name: locate
+      image: quay.io/buildah/stable:v1.11.0
+      workingDir: /workspace/
+      securityContext:
+        privileged: true
+      command: ["locate", "run_and_time.sh"]
     - name: run
       image: $(inputs.resources.image.url)
       workingDir: /workspace/
