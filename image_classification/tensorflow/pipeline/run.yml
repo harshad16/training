@@ -13,7 +13,7 @@ spec:
       workingDir: /workspace/
       securityContext:
         privileged: true
-      command: ["ls"]
+      command: ["/bin/sh", "find", "/", "-name", "run_and_time.sh"]
     - name: run
       image: $(inputs.resources.image.url)
       workingDir: /workspace/
