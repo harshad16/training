@@ -24,10 +24,10 @@ RUN yum install -y python-pip python3-pip virtualenv htop gcc-c++ locate
 RUN pip3 install --upgrade numpy scipy sklearn tensorflow-gpu==1.14.0
 
 # Mount data into the docker
-ADD . /workspace/resnet
+ADD . /workspace/source
 
 
-WORKDIR /workspace/resnet
+WORKDIR /workspace/source
 RUN pip3 install -r image_classification/tensorflow/requirements.txt
 
 
