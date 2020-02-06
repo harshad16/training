@@ -1,6 +1,6 @@
 FROM nvidia/cuda:10.2-cudnn7-runtime-centos7
 
-WORKDIR /workspace/source
+WORKDIR /workspace
 
 RUN yum update -y
 
@@ -24,12 +24,11 @@ RUN yum install -y python-pip python3-pip virtualenv htop gcc-c++
 RUN pip3 install --upgrade numpy scipy sklearn tensorflow-gpu==1.14.0
 
 # Mount data into the docker
-COPY ./ /workspace/source/training
+ADD . /workspace
 RUN ls
 
-RUN cd /workspace/source
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r ./image_classification/tensorflow/requirements.txt
 
 
 ENV _BUILDAH_STARTED_IN_USERNS="" BUILDAH_ISOLATION=chroot
-ENTRYPOINT [".image_classification/tensorflow/pipeline/docker_entrypoint.sh"]
+ENTRYPOINT ["./image_classification/tensorflow/pipeline/docker_entrypoint.sh"]

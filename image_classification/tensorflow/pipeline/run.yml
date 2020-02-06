@@ -10,19 +10,19 @@ spec:
   steps:
     - name: ls
       image: $(inputs.resources.image.url)
-      workingDir: /workspace/source
+      workingDir: /workspace/image_classification/tensorflow/
       securityContext:
         privileged: true
       command: ["ls"]
     - name: pwd
       image: $(inputs.resources.image.url)
-      workingDir: /workspace/source
+      workingDir: /workspace/image_classification/tensorflow/
       securityContext:
         privileged: true
       command: ["pwd"]
     - name: run
       image: $(inputs.resources.image.url)
-      workingDir: /workspace/source
+      workingDir: /workspace/image_classification/tensorflow/
       securityContext:
         privileged: true
       command: ["/bin/sh", "./image_classification/tensorflow/run_and_time.sh"]
