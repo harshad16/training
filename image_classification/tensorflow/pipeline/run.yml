@@ -25,4 +25,4 @@ spec:
       workingDir: /workspace/image_classification/tensorflow/
       securityContext:
         privileged: true
-      command: ["/bin/sh", "./image_classification/tensorflow/run_and_time.sh"]
+      command: ["/bin/sh", "./run_and_time.sh"]
