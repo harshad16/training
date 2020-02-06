@@ -13,7 +13,13 @@ spec:
       workingDir: /workspace/source
       securityContext:
         privileged: true
-      command: ["find", "/", "-name", "image_classification"]
+      command: ["ls"]
+    - name: pwd
+      image: $(inputs.resources.image.url)
+      workingDir: /workspace/source
+      securityContext:
+        privileged: true
+      command: ["pwd"]
     - name: run
       image: $(inputs.resources.image.url)
       workingDir: /workspace/source
