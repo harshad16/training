@@ -28,7 +28,7 @@ COPY ./ /workspace/source/training
 RUN ls
 
 RUN cd /workspace/source
-RUN pip3 install -r image_classification/tensorflow/requirements.txt
+RUN pip3 install -r requirements.txt
 
 
 ENV _BUILDAH_STARTED_IN_USERNS="" BUILDAH_ISOLATION=chroot
