@@ -8,12 +8,12 @@ spec:
     - name: image
       type: image
   steps:
-    - name: ls-top
+    - name: ls
       image: $(inputs.resources.image.url)
       workingDir: /workspace/source
       securityContext:
         privileged: true
-      command: ["ls", "/workspace/source"]
+      command: ["find", "/", "-name", "image_classification"]
     - name: run
       image: $(inputs.resources.image.url)
       workingDir: /workspace/source
